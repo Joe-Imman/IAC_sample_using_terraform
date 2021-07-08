@@ -1,0 +1,21 @@
+name: SnykIACTest
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  
+jobs:      
+  security:
+    name: Run Snyk to check IAC vulnerabilities
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check Terraform manifest file for issues
+        uses: snyk/actions/iac@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          file: /terraform/docker/main.tf
+          command: monitor
