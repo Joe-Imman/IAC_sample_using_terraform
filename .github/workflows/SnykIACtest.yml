@@ -17,5 +17,5 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          file: /terraform/docker/main.tf
+          file: terraform/docker/main.tf
         
